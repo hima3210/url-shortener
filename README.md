@@ -1,6 +1,6 @@
 # URL Shortener
 
-A simple URL shortener built with Django (backend) and Node.js (frontend).
+A URL shortener built with Django (backend) and Node.js (frontend).
 
 ## Features
 
