@@ -4,7 +4,8 @@ const axios = require('axios');
 const path = require('path');
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
+const BACKEND_URL = process.env.BACKEND_URL || 'http://127.0.0.1:8000';
 
 app.use(cors());
 app.use(express.json());
@@ -16,7 +17,7 @@ app.get('/', (req, res) => {
 
 app.post('/api/shorten', async (req, res) => {
     try {
-        const response = await axios.post('http://127.0.0.1:8000/api/shorten/', req.body);
+        const response = await axios.post(`${BACKEND_URL}/api/shorten/`, req.body);
         res.json(response.data);
     } catch (error) {
         res.status(500).json({ error: 'Failed to shorten URL' });
@@ -25,7 +26,7 @@ app.post('/api/shorten', async (req, res) => {
 
 app.get('/api/urls', async (req, res) => {
     try {
-        const response = await axios.get('http://127.0.0.1:8000/api/urls/');
+        const response = await axios.get(`${BACKEND_URL}/api/urls/`);
         res.json(response.data);
     } catch (error) {
         res.status(500).json({ error: 'Failed to fetch URLs' });
